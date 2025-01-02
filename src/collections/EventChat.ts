@@ -1,11 +1,10 @@
 import { CollectionConfig, Where } from 'payload'
 import { toggleParticipantHandler } from '../endpoints/event-chats/toggleParticipant'
+import { formatEventChatTitleHook } from '../hooks/formatEventChatTitle'
 
 export const EventChats: CollectionConfig = {
   slug: 'event-chats',
-  admin: {
-    useAsTitle: 'event',
-  },
+
   access: {
     create: ({ req: { user } }) => {
       // Checks at the beginning, don't check event etc can't see
@@ -60,7 +59,15 @@ export const EventChats: CollectionConfig = {
       handler: toggleParticipantHandler,
     },
   ],
+  admin: {
+    useAsTitle: 'title',
+  },
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
     {
       name: 'event',
       type: 'relationship',
@@ -97,7 +104,6 @@ export const EventChats: CollectionConfig = {
         description: 'Participants in the chat, you can only remove participants',
       },
       filterOptions: ({ user, data }) => {
-        console.log(data, user)
         if (user?.roles?.includes('admin')) return true
         if (user?.roles?.includes('organizer')) {
           return {
