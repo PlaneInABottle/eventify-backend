@@ -156,6 +156,7 @@ export interface Location {
  */
 export interface EventChat {
   id: string;
+  title: string;
   event: string | Event;
   participants?: (string | User)[] | null;
   updatedAt: string;
@@ -320,6 +321,7 @@ export interface EventsSelect<T extends boolean = true> {
  * via the `definition` "event-chats_select".
  */
 export interface EventChatsSelect<T extends boolean = true> {
+  title?: T;
   event?: T;
   participants?: T;
   updatedAt?: T;
