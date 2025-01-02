@@ -3,6 +3,9 @@ import { toggleParticipantHandler } from '../endpoints/event-chats/togglePartici
 
 export const EventChats: CollectionConfig = {
   slug: 'event-chats',
+  admin: {
+    useAsTitle: 'event',
+  },
   access: {
     create: ({ req: { user } }) => {
       // Checks at the beginning, don't check event etc can't see
