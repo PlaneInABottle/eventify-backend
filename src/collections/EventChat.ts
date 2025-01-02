@@ -1,6 +1,5 @@
 import { CollectionConfig, Where } from 'payload'
 import { toggleParticipantHandler } from '../endpoints/event-chats/toggleParticipant'
-import { formatEventChatTitleHook } from '../hooks/formatEventChatTitle'
 
 export const EventChats: CollectionConfig = {
   slug: 'event-chats',
